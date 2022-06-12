@@ -1,6 +1,7 @@
 package org.nnn4eu.mssc.msscbeerorderservice.bootstrap;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.nnn4eu.mssc.msscbeerorderservice.domain.Customer;
 import org.nnn4eu.mssc.msscbeerorderservice.repository.CustomerRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
+@Slf4j
 @RequiredArgsConstructor
 @Component
 public class BeerOrderBootStrap implements CommandLineRunner {
@@ -21,6 +23,7 @@ public class BeerOrderBootStrap implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         loadCustomerData();
+        log.info("Customer count: "+customerRepository.count());
     }
 
     private void loadCustomerData() {

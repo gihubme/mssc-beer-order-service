@@ -22,7 +22,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @Slf4j
 @Service
 public class BeerOrderServiceImpl implements BeerOrderService {
@@ -32,7 +32,14 @@ public class BeerOrderServiceImpl implements BeerOrderService {
     private final BeerOrderMapper beerOrderMapper;
     private final ApplicationEventPublisher publisher;
 
-
+    public BeerOrderServiceImpl(BeerOrderRepository beerOrderRepository,
+                                CustomerRepository customerRepository,
+                                BeerOrderMapper beerOrderMapper, ApplicationEventPublisher publisher) {
+        this.beerOrderRepository = beerOrderRepository;
+        this.customerRepository = customerRepository;
+        this.beerOrderMapper = beerOrderMapper;
+        this.publisher = publisher;
+    }
     @Override
     public BeerOrderPagedList listOrders(UUID customerId, Pageable pageable) {
         Optional<Customer> customerOptional = customerRepository.findById(customerId);
