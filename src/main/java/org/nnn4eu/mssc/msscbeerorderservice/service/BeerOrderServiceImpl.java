@@ -1,13 +1,11 @@
 package org.nnn4eu.mssc.msscbeerorderservice.service;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.nnn4eu.mssc.msscbeerorderservice.domain.BeerOrder;
 import org.nnn4eu.mssc.msscbeerorderservice.domain.Customer;
 import org.nnn4eu.mssc.msscbeerorderservice.domain.OrderStatusEnum;
 import org.nnn4eu.mssc.msscbeerorderservice.repository.BeerOrderRepository;
 import org.nnn4eu.mssc.msscbeerorderservice.repository.CustomerRepository;
-
 import org.nnn4eu.mssc.msscbeerorderservice.web.mapper.BeerOrderMapper;
 import org.nnn4eu.mssc.msscbeerorderservice.web.model.BeerOrderDto;
 import org.nnn4eu.mssc.msscbeerorderservice.web.model.BeerOrderPagedList;
@@ -40,6 +38,7 @@ public class BeerOrderServiceImpl implements BeerOrderService {
         this.beerOrderMapper = beerOrderMapper;
         this.publisher = publisher;
     }
+
     @Override
     public BeerOrderPagedList listOrders(UUID customerId, Pageable pageable) {
         Optional<Customer> customerOptional = customerRepository.findById(customerId);
@@ -100,17 +99,18 @@ public class BeerOrderServiceImpl implements BeerOrderService {
         beerOrderRepository.save(beerOrder);
     }
 
-    private BeerOrder getOrder(UUID customerId, UUID orderId){
+    private BeerOrder getOrder(UUID customerId, UUID orderId) {
+
         Optional<Customer> customerOptional = customerRepository.findById(customerId);
 
-        if(customerOptional.isPresent()){
+        if (customerOptional.isPresent()) {
             Optional<BeerOrder> beerOrderOptional = beerOrderRepository.findById(orderId);
 
-            if(beerOrderOptional.isPresent()){
+            if (beerOrderOptional.isPresent()) {
                 BeerOrder beerOrder = beerOrderOptional.get();
 
                 // fall to exception if customer id's do not match - order not for customer
-                if(beerOrder.getCustomer().getId().equals(customerId)){
+                if (beerOrder.getCustomer().getId().equals(customerId)) {
                     return beerOrder;
                 }
             }

@@ -16,7 +16,7 @@ public class SchedulerService {
     private final TastingRoomService tastingRoomService;
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-    @Scheduled(fixedRate = 2000)
+    @Scheduled(fixedRate = 6000)
     public void placeTastingRoomOrder() {
         log.info("The time is now {}", dateFormat.format(new Date()));
         tastingRoomService.placeTastingCustomerRoomOrder();
