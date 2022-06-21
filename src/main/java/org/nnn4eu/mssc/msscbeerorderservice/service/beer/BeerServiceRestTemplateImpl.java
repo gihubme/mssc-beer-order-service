@@ -13,7 +13,6 @@ import java.util.UUID;
 
 @Component
 @Slf4j
-//sfg.brewery.beer-service-host=http://localhost:8081
 @ConfigurationProperties(prefix = "sfg.beer", ignoreUnknownFields = false)
 public class BeerServiceRestTemplateImpl implements BeerService {
 
