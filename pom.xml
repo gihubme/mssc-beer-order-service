@@ -5,12 +5,23 @@
     <parent>
         <groupId>org.nnn4eu.mssc</groupId>
         <artifactId>mssc-bom</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
     <groupId>org.nnn4eu.mssc</groupId>
     <artifactId>mssc-beer-order-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>mssc-beer-order-service</name>
     <description>mssc-beer-order-service</description>
-
+    <repositories>
+        <repository>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>nikakar-mvnrelease</id>
+            <url>https://packagecloud.io/nikakar/mvnrelease/maven2</url>
+        </repository>
+    </repositories>
 </project>
